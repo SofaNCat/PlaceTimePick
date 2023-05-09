@@ -6,6 +6,8 @@ apikey = '89CEE1F97C97DDB57C4279AA8FFB6F38'
 #지정한 두 개의 요소 사이의 값을 리스트화 하여 리턴하는 함수
 #string에서 XML 등의 요소를 분석할때 사용됩니다
 
+NAME_INDEX = 1
+
 TAG = "DicApi"
 def midReturn_all(val, s, e):
     if s in val:

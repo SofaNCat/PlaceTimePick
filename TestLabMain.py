@@ -8,6 +8,10 @@ import Util as util
 
 TAG = "TestLabMain"
 
+
+
+
+
 # 변수 선언
 global root
 root = Tk()
@@ -50,8 +54,6 @@ def loadUI():
     btn.place(x= 200,y=200,height=10,width=50)
     btn.pack()
 
-
-
     root.mainloop()
 
 
@@ -89,49 +91,54 @@ def analyze():
     for i in range(0, currentLine):
         if max_place_score < scoreTable[i][0]:
             max_place_score = scoreTable[i][0]
-            index = i
+            placeIndex = i
 
 
     print("장소 | 최고점 : %d" %max_place_score,end = '')
-    print(" | index : %d" %index,end = '')
-    print(" | 데이터 : ", get_line(text,index))
+    print(" | index : %d" %placeIndex,end = '')
+    print(" | 데이터 : ", get_line(text,placeIndex))
 
-    max_place_score_1 = 0
+    max_time_score = 0
     for i in range(0, currentLine):
-        if max_place_score_1 < scoreTable[i][1]:
-            max_place_score_1 = scoreTable[i][1]
-            index_1 = i
+        if max_time_score < scoreTable[i][1]:
+            max_time_score = scoreTable[i][1]
+            timeIndex = i
 
 
-    print("시간 | 최고점 : %d" %max_place_score_1,end = '')
-    print(" | index : %d" %index_1,end = '')
-    print(" | 데이터 : ", get_line(text,index_1))
+    print("시간 | 최고점 : %d" %max_time_score,end = '')
+    print(" | index : %d" %timeIndex,end = '')
+    print(" | 데이터 : ", get_line(text,timeIndex))
 
 
-    max_place_score_2 = 0
+    max_name_score = 0
     for i in range(0, currentLine):
-        if max_place_score_2 < scoreTable[i][2]:
-            max_place_score_2 = scoreTable[i][2]
-            index_2 = i
+        if max_name_score < scoreTable[i][2]:
+            max_name_score = scoreTable[i][2]
+            nameIndex = i
 
 
-    print("이름 | 최고점 : %d" %max_place_score_2,end = '')
-    print(" | index : %d" %index_2,end = '')
-    print(" | 데이터 : ", get_line(text,index_2))
+    print("이름 | 최고점 : %d" %max_name_score,end = '')
+    print(" | index : %d" %nameIndex,end = '')
+    print(" | 데이터 : ", get_line(text,nameIndex))
 
+    #시간 : 0000년 00월 00일 00:00
+    #장소 : 00000 0000 00000000
+    #이름 : 신랑 000, 신부 000
 
-class DataResult:
-    index = 0
-    score = 0
+    timeInfoList = get_line(text,timeIndex) #시간이 나와잇는 라인을 출력
+    placeInfoList = get_line(text,placeIndex) #장소가 나와있는 라인과 출력 버스, 지하철 등 기타정보들이 나와있는 라인 전체를 리스트에 넣기
+    nameInfoList = ['김신랑', '김신부'] #신랑의 이름과 신부의 이름을 뽑아내서 리스트에 넣기
 
-def topScoreIndex(ind):
-    r = DataResult()
-    for i in range(0, currentLine):
-        if r.score < scoreTable[i][ind]:
-            r.score = scoreTable[i][ind]
-            r.index = i
+    print("시간 :", end='')
+    for i in timeInfoList:
+        print(" %s" %i, end='')
 
-    return r
+    print("장소 :", end='')
+    for i in placeInfoList:
+        print(" %s" %i, end='')
+
+    print("신랑 : %s, 신부 %s" %(nameInfoList[0], nameInfoList[1]))
+
 
 global placeKey
 placeKey = ['건물','공간','위치','장소','서울','대전','대구','부산','강원']
