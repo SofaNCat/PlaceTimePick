@@ -7,7 +7,7 @@ TAG = "DicApi"
 apikey = '89CEE1F97C97DDB57C4279AA8FFB6F38'
 
 class SearchResult:
-    word = ""
+    word = "  "
     definition = ""
 
 #지정한 두 개의 요소 사이의 값을 리스트화 하여 리턴하는 함수
